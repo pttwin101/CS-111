@@ -1,0 +1,68 @@
+#		python code
+#		script_name: MiniTask 7
+#
+#		author: Parker Todd
+#		description: Can change length of tune
+#
+
+#Setup
+from earsketch import *
+init()
+
+
+# total play time in secs
+totalPlayTime = 45
+
+totalLength = 30
+
+Tempo = ((totalLength * 4) * 60) / totalPlayTime
+setTempo(Tempo)
+
+# Music
+leadGuitar1 = RD_ROCK_POPRHYTHM_GUITAR_2
+leadGuitar2 = RD_ROCK_POPRHYTHM_GUITAR_14
+leadGuitar3 = RD_ROCK_POPRHYTHM_GUITAR_4
+bass1 = YG_GOSPEL_BASS_2
+bass2 = YG_GOSPEL_BASS_3
+bass3 = YG_GOSPEL_BASS_5
+drums1 = RD_ROCK_POPRHYTHM_DRUM_PART_10
+drums2 = RD_ROCK_POPRHYTHM_MAINDRUMS_1
+drums3 = RD_ROCK_POPRHYTHM_MAINDRUMS_1
+drumFill = RD_EDM_DRUMBEATPART_7
+drumEnd = RD_ROCK_POPRHYTHM_DRUM_PART_2
+
+#Section legths
+SectionStart = 1
+
+S_L = (totalLength - 2)/3
+s2_s = S_L + 1
+s3_s = (S_L*2) + 2
+s2_e = (S_L*2) + 1
+s3_e = totalLength - 1
+
+# Section 1
+fitMedia(leadGuitar1, 1, SectionStart, S_L)
+fitMedia(bass1, 2, SectionStart, S_L)
+fitMedia(drums1, 3, SectionStart, S_L)
+
+# Drum Fill
+fitMedia(drumFill, 3, S_L, s2_s)
+
+# Section 2
+fitMedia(leadGuitar2, 1, s2_s, s2_e)
+fitMedia(bass2, 2, s2_s, s2_e)
+fitMedia(drums2, 3, s2_s, s2_e)
+
+# Drum Fill
+fitMedia(drumFill, 3, s2_e, s3_s)
+
+#Section 3
+fitMedia(leadGuitar3, 1, s3_s, s3_e)
+fitMedia(bass3, 2, s3_s, s3_e)
+fitMedia(drums3, 3, s3_s, s3_e)
+fitMedia(drumEnd,3, s3_e, totalLength)
+
+
+
+#Finish
+finish()
